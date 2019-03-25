@@ -4,30 +4,19 @@ import styled from "styled-components";
 import Show from "../show/Show";
 
 class ShowList extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      currentShow: 13
-    };
-
-    this.updateCurrentShow = this.updateCurrentShow.bind(this);
-  }
-
-  updateCurrentShow(episodeNumber) {
-    this.setState({ currentShow: episodeNumber });
-  }
-
   render() {
-    const currentShow = this.state.currentShow;
+    const expandedShow = this.props.expandedShow;
+    const currentShow = this.props.currentShow;
     const shows = this.props.shows.map(show => {
       return (
         <Show
           key={show.meta.episode}
           title={show.title}
           episode={show.meta.episode}
-          active={show.meta.episode === currentShow}
-          updateCurrentShow={this.updateCurrentShow}
+          active={show.meta.episode === expandedShow}
+          playing={show.meta.episode === currentShow}
+          updateCurrentShow={this.props.updateCurrentShow}
+          expandShow={this.props.expandShow}
         />
       );
     });

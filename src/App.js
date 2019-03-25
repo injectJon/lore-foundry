@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Header from "./components/header/Header";
 import Subscribe from "./components/subscribe/Subscribe";
 import Content from "./components/content/Content";
+import Footer from "./components/footer/Footer";
 
 class App extends Component {
   constructor() {
@@ -18,6 +19,7 @@ class App extends Component {
 
   componentWillMount() {
     window.addEventListener("resize", this.handleWindowSizeChange);
+    // localStorage.clear();
   }
 
   componentWillUnmount() {
@@ -35,6 +37,7 @@ class App extends Component {
           <Header />
           <Subscribe />
           <Content />
+          <Footer />
         </Container>
       </AppWrapper>
     );
@@ -44,9 +47,15 @@ class App extends Component {
 const AppWrapper = styled.div`
   min-height: 100vh;
   width: inherit;
-  background-color: #f3f3f3;
+  background: rgb(3, 2, 2);
+  background: radial-gradient(
+    circle,
+    rgba(3, 2, 2, 1) 0%,
+    rgba(49, 49, 49, 1) 100%
+  );
   display: flex;
   justify-content: center;
+  border-top: 0.25rem solid #fcc34b;
 `;
 const Container = styled.div`
   display: flex;
@@ -55,6 +64,7 @@ const Container = styled.div`
   width: inherit;
   width: 100rem;
   padding: 3rem;
+  padding-top: 2rem;
 
   @media (max-width: 50rem) {
     width: 100vw;

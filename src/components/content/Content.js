@@ -2,18 +2,24 @@ import React, { Component } from "react";
 import styled from "styled-components";
 
 import ShowList from "../showList/ShowList";
+import ShowNotes from "../showNotes/ShowNotes";
+import Player from "../player/Player";
 
 class Content extends Component {
   constructor() {
     super();
 
     this.state = {
+      currentShow: parseInt(localStorage.getItem("currentShow")) || null,
+      expandedShow: parseInt(localStorage.getItem("currentShow")) || null,
       shows: []
     };
+
+    this.updateCurrentShow = this.updateCurrentShow.bind(this);
+    this.expandShow = this.expandShow.bind(this);
   }
 
   componentDidMount() {
-    console.log("Fetching shows from server...");
     fetch("https://allegedbot.herokuapp.com/api/lorefoundry/rss", {
       method: "GET",
       headers: {
@@ -22,21 +28,63 @@ class Content extends Component {
     })
       .then(res => res.json())
       .then(json => {
-        console.log(json);
         if (json.success) {
-          this.setState({ shows: json.shows });
+          if (this.state.currentShow && this.state.expandedShow) {
+            this.setState({ shows: json.shows });
+          } else {
+            this.setState({
+              shows: json.shows,
+              currentShow: json.shows.length + 1,
+              expandedShow: json.shows.length + 1
+            });
+          }
+        } else {
+          console.log("Error fetching shows from the server.");
         }
       });
   }
 
+  componentDidUpdate() {
+    localStorage.setItem("currentShow", this.state.currentShow);
+  }
+
+  updateCurrentShow(num) {
+    this.setState({ currentShow: num });
+  }
+
+  expandShow(num) {
+    this.setState({ expandedShow: num });
+  }
+
   render() {
-    return (
-      <Container>
-        <Player />
-        <ShowList shows={this.state.shows} />
-        <ShowNotes />
-      </Container>
+    const currentShow = this.state.shows.filter(
+      show => show.meta.episode === this.state.currentShow
     );
+    const expandedShow = this.state.shows.filter(
+      show => show.meta.episode === this.state.expandedShow
+    );
+
+    // Don't render content until we've found the currentShow
+    let content;
+    if (currentShow[0] && expandedShow[0]) {
+      content = (
+        <Container>
+          <Player show={currentShow[0]} />
+          <ShowList
+            shows={this.state.shows}
+            currentShow={this.state.currentShow}
+            expandedShow={this.state.expandedShow}
+            updateCurrentShow={this.updateCurrentShow}
+            expandShow={this.expandShow}
+          />
+          <ShowNotes show={expandedShow[0]} />
+        </Container>
+      );
+    } else {
+      content = <div />;
+    }
+
+    return <div>{content}</div>;
   }
 }
 
@@ -44,18 +92,6 @@ const Container = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-`;
-const Player = styled.div`
-  height: 10rem;
-  width: 100%;
-  background-color: #eeeeee;
-  border-radius: 0.3rem 0.3rem 0 0;
-`;
-const ShowNotes = styled.div`
-  width: 60%;
-  background-color: #313131;
-  border-bottom: 1px solid #717171;
-  border-bottom-right-radius: 0.3rem;
 `;
 
 export default Content;

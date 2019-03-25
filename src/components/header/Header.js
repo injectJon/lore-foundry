@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import logo from "../../logo-tome-black-medium.png";
+import logo from "../../logo-tome-white-medium.png";
 import avatar from "../../placeholder-avatar.png";
 
 import Person from "../person/Person";
@@ -40,7 +40,7 @@ class Header extends Component {
           <Logo src={logo} />
         </LeftContainer>
         <RightContainer>
-          <Tagline>World Building podcast.</Tagline>
+          <Tagline>Greg and Daron do Worldbuilding.</Tagline>
           <People>{people}</People>
         </RightContainer>
       </Container>
@@ -59,7 +59,7 @@ const LeftContainer = styled.div`
 `;
 const Logo = styled.img`
   height: 25rem;
-  margin-left: 1rem;
+  margin-left: 2.3rem;
 `;
 // RIGHT CONTAINER ---------------
 const RightContainer = styled.div`
@@ -74,6 +74,7 @@ const Tagline = styled.h2`
   margin-bottom: 1.8rem;
   margin-left: 3rem;
   font-size: 2.5rem;
+  color: #f3f3f3;
 `;
 const People = styled.div`
   display: flex;

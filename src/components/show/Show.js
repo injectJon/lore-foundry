@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import playIcon from "../../small-play-button-01.png";
 
 class Show extends Component {
   render() {
@@ -7,30 +8,61 @@ class Show extends Component {
       <Container
         active={this.props.active}
         isFirstEp={this.props.episode === 1}
-        onClick={() => this.props.updateCurrentShow(this.props.episode)}
+        onClick={() => this.props.expandShow(this.props.episode)}
       >
-        <EpisodeText>Episode {this.props.episode}</EpisodeText>
-        <TitleText>{this.props.title}</TitleText>
+        <TextContainer>
+          <EpisodeText>Episode {this.props.episode}</EpisodeText>
+          <TitleText>{this.props.title}</TitleText>
+        </TextContainer>
+        <ButtonContainer
+          onClick={() => this.props.updateCurrentShow(this.props.episode)}
+          playing={this.props.playing}
+          active={this.props.active}
+        >
+          <PlayButton src={playIcon} />
+        </ButtonContainer>
       </Container>
     );
   }
 }
 
 const Container = styled.div`
-  color: #f3f3f3;
+  color: #313131;
   min-height: 4rem;
-  background-color: #313131;
+  background-color: #f3f3f3;
   padding: 1rem;
   display: flex;
-  flex-direction: column;
   justify-content: space-between;
-  ${({ active }) => !active && `border-right: 1px solid #717171;`}
+  align-items: center;
+  ${({ active }) => !active && `border-right: 1px solid #e6e6e6;`}
   ${({ active }) =>
     active
       ? `border-left: 0.5rem solid #febe10;`
-      : `border-left: 0.5rem solid #717171`}
-  border-bottom: 1px solid #717171;
+      : `border-left: 0.5rem solid #e6e6e6`}
+  border-bottom: 1px solid #e6e6e6;
   ${({ isFirstEp }) => isFirstEp && `border-bottom-left-radius: 0.3rem;`}
+`;
+const TextContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  padding-right: 0;
+  ${({ playing }) => playing && `display: none;`}
+  ${({ active }) => active && `padding-right: 0.1rem;`}
+
+  :hover {
+    cursor: pointer;
+  }
+`;
+const PlayButton = styled.img`
+  height: 1rem;
+  margin-right: 1rem;
 `;
 const EpisodeText = styled.h3`
   font-size: 1.1rem;
