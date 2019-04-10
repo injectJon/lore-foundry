@@ -64,20 +64,22 @@ class Content extends Component {
       show => show.meta.episode === this.state.expandedShow
     );
 
-    // Don't render content until we've found the currentShow
+    // Don't render content until we've found the current show
     let content;
     if (currentShow[0] && expandedShow[0]) {
       content = (
         <Container>
           <Player show={currentShow[0]} />
-          <ShowList
-            shows={this.state.shows}
-            currentShow={this.state.currentShow}
-            expandedShow={this.state.expandedShow}
-            updateCurrentShow={this.updateCurrentShow}
-            expandShow={this.expandShow}
-          />
-          <ShowNotes show={expandedShow[0]} />
+          <ShowContainer>
+            <ShowList
+              shows={this.state.shows}
+              currentShow={this.state.currentShow}
+              expandedShow={this.state.expandedShow}
+              updateCurrentShow={this.updateCurrentShow}
+              expandShow={this.expandShow}
+            />
+            <ShowNotes show={expandedShow[0]} />
+          </ShowContainer>
         </Container>
       );
     } else {
@@ -92,6 +94,15 @@ const Container = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+`;
+const ShowContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+
+  @media (max-width: 700px) {
+    flex-direction: column;
+    width: 100%;
+  }
 `;
 
 export default Content;

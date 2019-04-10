@@ -30,6 +30,10 @@ const Container = styled.div`
   border-bottom-left-radius: 0.3rem;
   display: flex;
   flex-direction: column;
+
+  @media (max-width: 700px) {
+    width: 100%;
+  }
 `;
 
 export default ShowList;
