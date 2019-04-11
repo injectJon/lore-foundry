@@ -28,7 +28,7 @@ const Container = styled.div`
 
   @media (max-width: ${mediaWidth}) {
     margin-left: 0;
-    ${({ name }) => (name === "Greg Berg" ? "margin-right: 3rem;" : "")}
+    ${({ name }) => (name === "Greg" ? "margin-right: 3rem;" : "")}
   }
 
   @media (max-width: 640px) {
