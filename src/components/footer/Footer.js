@@ -4,7 +4,7 @@ import styled from "styled-components";
 const Footer = () => {
   return (
     <Container>
-      <Text>© Greg Burg & Daron Schmit 2019</Text>
+      <Text>© Greg & Daron 2019</Text>
     </Container>
   );
 };
