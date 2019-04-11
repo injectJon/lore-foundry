@@ -241,9 +241,19 @@ const ScrubSlider = styled.input`
   width: 100%;
   background: #212121;
   outline: none;
+  overflow: hidden;
+
+  -webkit-appearance: none;
 
   :hover {
     cursor: pointer;
+  }
+
+  ::-webkit-slider-runnable-track {
+    height: 100%;
+    -webkit-appearance: none;
+    background: #212121;
+    border-radius: 0;
   }
 
   ::-moz-range-progress {
@@ -252,10 +262,9 @@ const ScrubSlider = styled.input`
   }
 
   ::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 0.1rem;
+    width: 1.5rem;
     height: 100%;
+    -webkit-appearance: none;
     background: #fcc34b;
     cursor: pointer;
     border-radius: 0;
@@ -327,12 +336,13 @@ const Slider = styled.input`
   background: #212121;
   outline: none;
 
+  -webkit-appearance: none;
+
   ::-webkit-slider-thumb {
     -webkit-appearance: none;
-    appearance: none;
-    width: 1rem;
-    height: 1rem;
-    background: #fcc34b;
+    width: 1.3rem;
+    height: 1.3rem;
+    background-color: #fcc34b;
     cursor: pointer;
     border-radius: 10rem;
   }

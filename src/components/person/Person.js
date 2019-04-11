@@ -44,6 +44,7 @@ const SocialContainer = styled.div`
 const Avatar = styled.img`
   height: 10rem;
   margin-left: 1.5rem;
+  border: 0.1rem solid #030202;
   border-radius: 5rem;
 `;
 const NameText = styled.h3`

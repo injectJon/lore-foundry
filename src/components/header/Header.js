@@ -3,6 +3,7 @@ import styled from "styled-components";
 import logo from "../../logo-tome-white-medium.png";
 import avatar from "../../placeholder-avatar.png";
 import daronAvatar from "../../daron-avatar.jpg";
+import gregAvatar from "../../greg-avatar.jpg";
 
 import Person from "../person/Person";
 
@@ -11,7 +12,7 @@ class Header extends Component {
     people: [
       {
         name: "Greg Berg",
-        imgSrc: avatar,
+        imgSrc: gregAvatar,
         twitterHandle: "",
         intro: `Hi, I'm Greg.`
       },
