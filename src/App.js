@@ -44,6 +44,8 @@ class App extends Component {
   }
 }
 
+const mediaWidth = "640px";
+
 const AppWrapper = styled.div`
   min-height: 100vh;
   width: inherit;
@@ -66,8 +68,10 @@ const Container = styled.div`
   padding: 3rem;
   padding-top: 2rem;
 
-  @media (max-width: 50rem) {
+  @media (max-width: ${mediaWidth}) {
     width: 100vw;
+    padding-left: 2rem;
+    padding-right: 2rem;
   }
 `;
 

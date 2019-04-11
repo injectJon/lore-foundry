@@ -17,14 +17,19 @@ const ShowNotes = ({ show }) => {
   );
 };
 
+const mediaWidth = "640px";
+
 const Container = styled.div`
   max-width: 60%;
   background-color: #f3f3f3;
-  border-bottom: 1px solid #e6e6e6;
+  border-bottom: 0.1rem solid #c6c6c6;
+  border-right: 0.1rem solid #c6c6c6;
   border-bottom-right-radius: 0.3rem;
 
-  @media (max-width: 700px) {
+  @media (max-width: ${mediaWidth}) {
+    max-width: 100%;
     width: 100%;
+    border-bottom-left-radius: 0.3rem;
   }
 `;
 const Header = styled.div`

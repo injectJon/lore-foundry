@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const Person = ({ imgSrc, name, twitterHandle, intro }) => {
   return (
-    <Container>
+    <Container name={name}>
       <SocialContainer>
         <Avatar src={imgSrc} />
         <NameText>{name}</NameText>
@@ -12,6 +12,8 @@ const Person = ({ imgSrc, name, twitterHandle, intro }) => {
     </Container>
   );
 };
+
+const mediaWidth = "840px";
 
 const Container = styled.div`
   display: flex;
@@ -23,6 +25,18 @@ const Container = styled.div`
   padding: 1rem;
   border-radius: 0.3rem;
   justify-content: center;
+
+  @media (max-width: ${mediaWidth}) {
+    margin-left: 0;
+    ${({ name }) => (name === "Greg Berg" ? "margin-right: 3rem;" : "")}
+  }
+
+  @media (max-width: 640px) {
+    width: calc(100% - 2rem);
+    margin-bottom: 3rem;
+    margin-left: 0;
+    margin-right: 0;
+  }
 `;
 const SocialContainer = styled.div`
   display: flex;
@@ -30,6 +44,7 @@ const SocialContainer = styled.div`
 const Avatar = styled.img`
   height: 10rem;
   margin-left: 1.5rem;
+  border-radius: 5rem;
 `;
 const NameText = styled.h3`
   font-size: 1.8rem;

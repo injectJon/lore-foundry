@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import playIcon from "../../small-play-button-01.png";
+import playingIcon from "../../playing-bars-01-01.png";
 
 class Show extends Component {
   render() {
@@ -19,12 +20,15 @@ class Show extends Component {
           playing={this.props.playing}
           active={this.props.active}
         >
-          <PlayButton src={playIcon} />
+          {this.props.playing && <PlayButton src={playingIcon} />}
+          {!this.props.playing && <PlayButton src={playIcon} />}
         </ButtonContainer>
       </Container>
     );
   }
 }
+
+const mediaWidth = "640px";
 
 const Container = styled.div`
   color: #313131;
@@ -34,13 +38,18 @@ const Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  ${({ active }) => !active && `border-right: 1px solid #e6e6e6;`}
+  ${({ active }) =>
+    !active && `border-right: 1px solid #c6c6c6; background-color: #e9e9e9;`}
   ${({ active }) =>
     active
       ? `border-left: 0.5rem solid #febe10;`
-      : `border-left: 0.5rem solid #e6e6e6`}
-  border-bottom: 1px solid #e6e6e6;
+      : `border-left: 0.5rem solid #c6c6c6;`}
+  border-bottom: 1px solid #c6c6c6;
   ${({ isFirstEp }) => isFirstEp && `border-bottom-left-radius: 0.3rem;`}
+
+  @media (max-width: ${mediaWidth}) {
+    border-right: none;
+  }
 `;
 const TextContainer = styled.div`
   display: flex;
@@ -53,11 +62,11 @@ const ButtonContainer = styled.div`
   align-items: center;
   padding: 1rem;
   padding-right: 0;
-  ${({ playing }) => playing && `display: none;`}
   ${({ active }) => active && `padding-right: 0.1rem;`}
 
   :hover {
     cursor: pointer;
+    ${({ playing }) => playing && `cursor: default;`}
   }
 `;
 const PlayButton = styled.img`

@@ -137,31 +137,34 @@ class Player extends Component {
     return (
       <Container>
         <LeftContainer>
-          {this.state.playing ? (
-            <PlayPause src={pauseIcon} onClick={() => this.pause()} />
-          ) : (
-            <PlayPause src={playIcon} onClick={() => this.play()} />
-          )}
-          <TimeText>
-            {currentTimeString} / {show.meta.duration}
-          </TimeText>
+          <PlayContainer>
+            {this.state.playing ? (
+              <PlayPause src={pauseIcon} onClick={() => this.pause()} />
+            ) : (
+              <PlayPause src={playIcon} onClick={() => this.play()} />
+            )}
+            <TimeText>
+              {currentTimeString} / {show.meta.duration}
+            </TimeText>
+          </PlayContainer>
+
+          <ShowContainer>
+            <PlaybackScrub id="scrub">
+              <ScrubSlider
+                type="range"
+                min="0"
+                max={`${this.state.showLength}`}
+                value={this.state.currentTime}
+                id="scrub"
+                onChange={e => this.scrub(e.target.value)}
+              />
+            </PlaybackScrub>
+            <ShowInfo>
+              <TitleText>Playing: {show.title}</TitleText>
+              <EpisodeText>Episode {show.meta.episode}</EpisodeText>
+            </ShowInfo>
+          </ShowContainer>
         </LeftContainer>
-        <MidContainer>
-          <PlaybackScrub id="scrub">
-            <ScrubSlider
-              type="range"
-              min="0"
-              max={`${this.state.showLength}`}
-              value={this.state.currentTime}
-              id="scrub"
-              onChange={e => this.scrub(e.target.value)}
-            />
-          </PlaybackScrub>
-          <ShowInfo>
-            <TitleText>Playing: {show.title}</TitleText>
-            <EpisodeText>Episode {show.meta.episode}</EpisodeText>
-          </ShowInfo>
-        </MidContainer>
         <RightContainer>
           <SpeedContainer onClick={() => this.changePlaybackSpeed()}>
             <SpeedText style={{ marginBottom: `${1}rem` }}>SPEED</SpeedText>
@@ -184,30 +187,45 @@ class Player extends Component {
   }
 }
 
+const mediaWidth = "640px";
+
 const Container = styled.div`
   height: 10rem;
   width: 100%;
-  background-color: #313131;
   border-radius: 0.3rem 0.3rem 0 0;
   position: sticky;
   top: 0rem;
   display: flex;
   justify-content: space-between;
   z-index: 100;
+
+  @media (max-width: ${mediaWidth}) {
+    flex-wrap: wrap;
+    height: 20rem;
+  }
 `;
 const LeftContainer = styled.div`
-  width: 12rem;
-  height: 100%
+  flex: 1;
+  background-color: #313131;
+  height: 10rem;
+  border-right: 0.1rem solid #030202;
+  display: flex;
+`;
+const PlayContainer = styled.div`
+  height: 10rem;
+  min-width: 10rem;
   border-right: 0.1rem solid #030202;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 `;
-const MidContainer = styled.div`
+const ShowContainer = styled.div`
+  background-color: #313131;
   flex: 1;
   display: flex;
   flex-direction: column;
+  height: 10rem;
 `;
 const PlaybackScrub = styled.div`
   width: 100%;
@@ -253,6 +271,7 @@ const ScrubSlider = styled.input`
 `;
 const ShowInfo = styled.div`
   flex: 1;
+  white-space: nowrap;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -260,6 +279,10 @@ const ShowInfo = styled.div`
   padding: 1rem;
   padding-left: 1.3rem;
   padding-bottom: 1.25rem;
+
+  @media (max-width: ${mediaWidth}) {
+    white-space: normal;
+  }
 `;
 const TitleText = styled.h1`
   color: #f3f3f3;
@@ -272,8 +295,14 @@ const EpisodeText = styled.p`
 `;
 const RightContainer = styled.div`
   display: flex;
+
+  @media (max-width: ${mediaWidth}) {
+    width: 100%;
+    border-top: 0.1rem solid #030202;
+  }
 `;
 const VolumeContainer = styled.div`
+  background-color: #313131;
   width: 10rem;
   height: 100%;
   border-left: 0.1rem solid #030202;
@@ -281,6 +310,10 @@ const VolumeContainer = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+
+  @media (max-width: ${mediaWidth}) {
+    width: 50%;
+  }
 `;
 const VolumeText = styled.p`
   font-size: 1.1rem;
@@ -313,6 +346,7 @@ const Slider = styled.input`
   }
 `;
 const SpeedContainer = styled.div`
+  background-color: #313131;
   width: 10rem;
   height: 100%;
   border-left: 0.1rem solid #030202;
@@ -323,6 +357,11 @@ const SpeedContainer = styled.div`
 
   :hover {
     cursor: pointer;
+  }
+
+  @media (max-width: ${mediaWidth}) {
+    width: 50%;
+    border-left: none;
   }
 `;
 const SpeedText = styled.div`
@@ -343,6 +382,8 @@ const PlayPause = styled.img`
 const TimeText = styled.p`
   font-size: 1rem;
   color: #f3f3f3;
+  margin-left: 0.2rem;
+  margin-right: 0.2rem;
 `;
 
 export default Player;

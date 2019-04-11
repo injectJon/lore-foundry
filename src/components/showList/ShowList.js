@@ -24,6 +24,8 @@ class ShowList extends Component {
   }
 }
 
+const mediaWidth = "640px";
+
 const Container = styled.div`
   background-color: #f0f0f0;
   width: 40%;
@@ -31,8 +33,13 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
 
-  @media (max-width: 700px) {
+  @media (max-width: ${mediaWidth}) {
     width: 100%;
+    height: 30rem;
+    border-bottom-left-radius: 0rem;
+    border-bottom: none;
+    overflow: scroll;
+    overflow-x: hidden;
   }
 `;
 

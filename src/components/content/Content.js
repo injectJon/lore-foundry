@@ -23,7 +23,7 @@ class Content extends Component {
     fetch("https://allegedbot.herokuapp.com/api/lorefoundry/rss", {
       method: "GET",
       headers: {
-        Authorization: ``
+        Authorization: process.env.API_KEY
       }
     })
       .then(res => res.json())
@@ -90,6 +90,8 @@ class Content extends Component {
   }
 }
 
+const mediaWidth = "640px";
+
 const Container = styled.div`
   display: flex;
   flex-direction: row;
@@ -99,9 +101,8 @@ const ShowContainer = styled.div`
   display: flex;
   flex-direction: row;
 
-  @media (max-width: 700px) {
+  @media (max-width: ${mediaWidth}) {
     flex-direction: column;
-    width: 100%;
   }
 `;
 

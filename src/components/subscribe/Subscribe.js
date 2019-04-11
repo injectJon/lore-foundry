@@ -111,15 +111,19 @@ const Subscribe = () => {
 };
 
 const Container = styled.div`
+  width: calc(100%+2rem);
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
   margin-left: -2rem;
   margin-bottom: 1rem;
+  margin-right: -0rem;
 `;
 const Button = styled.a`
+  flex: 1;
   padding: 1rem;
   font-size: 1.4rem;
+  text-align: center;
+  white-space: nowrap;
   margin-left: 2rem;
   margin-bottom: 2rem;
   border: 1px solid #313131;
