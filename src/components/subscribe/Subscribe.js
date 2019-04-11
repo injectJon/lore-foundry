@@ -132,35 +132,39 @@ const Button = styled.a`
   color: #f3f3f3;
   text-decoration: none;
 
+  ${({ className }) => (className === "itunes" ? `color: #983cd0;` : "")}
+    ${({ className }) => (className === "tune-in" ? `color: #14d8cc;` : "")}
+    ${({ className }) => (className === "overcast" ? `color: #ff7127;` : "")}
+    ${({ className }) =>
+      className === "google-podcast" ? `color: #fcae4f;` : ""}
+    ${({ className }) => (className === "stitcher" ? `color: #c8d05b;` : "")}
+    ${({ className }) =>
+      className === "pocket-casts" ? `color: #dc1210;` : ""}
+    ${({ className }) => (className === "google-play" ? `color: #36d4dc;` : "")}
+    ${({ className }) => (className === "spotify" ? `color: #0da944;` : "")}
+    ${({ className }) => (className === "rss" ? `color: #ed7421;` : "")}
+
   :hover {
     cursor: pointer;
     background-color: transparent;
-    color: #313131;
 
     ${({ className }) =>
-      className === "itunes" ? `color: #983cd0; border-color: #983cd0;` : ""}
+      className === "itunes" ? `border-color: #983cd0;` : ""}
     ${({ className }) =>
-      className === "tune-in" ? `color: #14d8cc; border-color: #14d8cc;` : ""}
+      className === "tune-in" ? `border-color: #14d8cc;` : ""}
     ${({ className }) =>
-      className === "overcast" ? `color: #ff7127; border-color: #ff7127;` : ""}
+      className === "overcast" ? `border-color: #ff7127;` : ""}
     ${({ className }) =>
-      className === "google-podcast"
-        ? `color: #fcae4f; border-color: #fcae4f;`
-        : ""}
+      className === "google-podcast" ? `border-color: #fcae4f;` : ""}
     ${({ className }) =>
-      className === "stitcher" ? `color: #c8d05b; border-color: #c8d05b;` : ""}
+      className === "stitcher" ? `border-color: #c8d05b;` : ""}
     ${({ className }) =>
-      className === "pocket-casts"
-        ? `color: #dc1210; border-color: #dc1210;`
-        : ""}
+      className === "pocket-casts" ? `border-color: #dc1210;` : ""}
     ${({ className }) =>
-      className === "google-play"
-        ? `color: #36d4dc; border-color: #36d4dc;`
-        : ""}
+      className === "google-play" ? `border-color: #36d4dc;` : ""}
     ${({ className }) =>
-      className === "spotify" ? `color: #0da944; border-color: #0da944;` : ""}
-    ${({ className }) =>
-      className === "rss" ? `color: #ed7421; border-color: #ed7421;` : ""}
+      className === "spotify" ? `border-color: #0da944;` : ""}
+    ${({ className }) => (className === "rss" ? `border-color: #ed7421;` : "")}
   }
 `;
 
