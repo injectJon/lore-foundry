@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import logo from "../../logo-tome-white-medium.png";
-import avatar from "../../placeholder-avatar.png";
-import daronAvatar from "../../daron-avatar.jpg";
-import gregAvatar from "../../greg-avatar.jpg";
+import daronAvatar from "../../daron-avatar.png";
+import gregAvatar from "../../greg-avatar.png";
 
 import Person from "../person/Person";
 
