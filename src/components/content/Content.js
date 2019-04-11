@@ -23,7 +23,7 @@ class Content extends Component {
     fetch("https://allegedbot.herokuapp.com/api/lorefoundry/rss", {
       method: "GET",
       headers: {
-        Authorization: process.env.API_KEY
+        Authorization: process.env.REACT_APP_API_KEY
       }
     })
       .then(res => res.json())
