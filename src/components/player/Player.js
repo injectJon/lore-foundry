@@ -196,7 +196,6 @@ const Container = styled.div`
   position: sticky;
   top: 0rem;
   display: flex;
-  justify-content: space-between;
   z-index: 100;
 
   @media (max-width: ${mediaWidth}) {
@@ -208,8 +207,12 @@ const LeftContainer = styled.div`
   flex: 1;
   background-color: #313131;
   height: 10rem;
-  border-right: 0.1rem solid #030202;
   display: flex;
+  z-index: 101;
+
+  @media (max-width: ${mediaWidth}) {
+    border-bottom: 0.1rem solid #030202;
+  }
 `;
 const PlayContainer = styled.div`
   height: 10rem;
@@ -307,7 +310,7 @@ const RightContainer = styled.div`
 
   @media (max-width: ${mediaWidth}) {
     width: 100%;
-    border-top: 0.1rem solid #030202;
+    margin-top: -0.5rem;
   }
 `;
 const VolumeContainer = styled.div`
