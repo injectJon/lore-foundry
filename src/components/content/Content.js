@@ -40,6 +40,7 @@ class Content extends Component {
           }
         } else {
           console.log("Error fetching shows from the server.");
+          console.log("Response:\n", json);
         }
       });
   }
