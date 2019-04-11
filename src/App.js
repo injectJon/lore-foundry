@@ -55,7 +55,11 @@ const AppWrapper = styled.div`
     rgba(3, 2, 2, 1) 0%,
     rgba(49, 49, 49, 1) 100%
   );
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
   border-top: 0.25rem solid #fcc34b;
 `;
