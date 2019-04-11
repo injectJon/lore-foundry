@@ -11,13 +11,13 @@ class Header extends Component {
   state = {
     people: [
       {
-        name: "Greg Berg",
+        name: "Greg",
         imgSrc: gregAvatar,
         twitterHandle: "",
         intro: `Hi, I'm Greg.`
       },
       {
-        name: "Daron Schmit",
+        name: "Daron",
         imgSrc: daronAvatar,
         twitterHandle: "",
         intro: `Hi, I'm Daron.`
