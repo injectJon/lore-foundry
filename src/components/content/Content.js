@@ -84,7 +84,7 @@ class Content extends Component {
         </Container>
       );
     } else {
-      content = <div />;
+      content = <div>{`Fetching Episodes...`}</div>;
     }
 
     return <div>{content}</div>;
