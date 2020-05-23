@@ -12,9 +12,10 @@ class ShowList extends Component {
         <Show
           key={show.meta.episode}
           title={show.title}
+          season={show.meta.season}
           episode={show.meta.episode}
-          active={show.meta.episode === expandedShow}
-          playing={show.meta.episode === currentShow}
+          active={show.meta.season === expandedShow.season && show.meta.episode === expandedShow.episode}
+          playing={show.meta.season === currentShow.season && show.meta.episode === currentShow.episode}
           updateCurrentShow={this.props.updateCurrentShow}
           expandShow={this.props.expandShow}
         />

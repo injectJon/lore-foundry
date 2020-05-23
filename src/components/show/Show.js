@@ -9,14 +9,14 @@ class Show extends Component {
       <Container
         active={this.props.active}
         isFirstEp={this.props.episode === 1}
-        onClick={() => this.props.expandShow(this.props.episode)}
+        onClick={() => this.props.expandShow(this.props.season, this.props.episode)}
       >
         <TextContainer>
-          <EpisodeText>Episode {this.props.episode}</EpisodeText>
+          <EpisodeText>Season {this.props.season}, Episode {this.props.episode}</EpisodeText>
           <TitleText>{this.props.title}</TitleText>
         </TextContainer>
         <ButtonContainer
-          onClick={() => this.props.updateCurrentShow(this.props.episode)}
+          onClick={() => this.props.updateCurrentShow(this.props.season, this.props.episode)}
           playing={this.props.playing}
           active={this.props.active}
         >

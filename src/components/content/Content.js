@@ -5,6 +5,21 @@ import ShowList from "../showList/ShowList";
 import ShowNotes from "../showNotes/ShowNotes";
 import Player from "../player/Player";
 
+function sortShows(show1, show2) {
+  //sort by season & episode
+  const value = show1.meta.season * 1000 + show1.meta.episode;
+  const value2 = show2.meta.season * 1000 + show2.meta.episode;
+
+  if (value < value2) {
+      return 1;
+  }
+  if (value > value2) {
+      return -1;
+  }
+
+  return 0;
+}
+
 class Content extends Component {
   constructor() {
     super();
@@ -35,10 +50,11 @@ class Content extends Component {
           if (this.state.currentShow && this.state.expandedShow) {
             this.setState({ shows: json.shows });
           } else {
+            const sortedShows = json.shows.sort((show, show2) => sortShows(show, show2));
             this.setState({
-              shows: json.shows,
-              currentShow: json.shows.length + 0,
-              expandedShow: json.shows.length + 0
+              shows: sortedShows,
+              currentShow: {season: sortedShows[0].meta.season, episode: sortedShows[0].meta.episode},
+              expandedShow: {season: sortedShows[0].meta.season, episode: sortedShows[0].meta.episode}
             });
           }
         } else {
@@ -52,20 +68,20 @@ class Content extends Component {
     localStorage.setItem("currentShow", this.state.currentShow);
   }
 
-  updateCurrentShow(num) {
-    this.setState({ currentShow: num });
+  updateCurrentShow(sNum, eNum) {
+    this.setState({ currentShow: {season: sNum, episode: eNum } });
   }
 
-  expandShow(num) {
-    this.setState({ expandedShow: num });
+  expandShow(sNum, eNum) {
+    this.setState({ expandedShow: {season: sNum, episode: eNum } });
   }
 
   render() {
     const currentShow = this.state.shows.filter(
-      show => show.meta.episode === this.state.currentShow
+      show => show.meta.season === this.state.currentShow.season && show.meta.episode === this.state.currentShow.episode
     );
     const expandedShow = this.state.shows.filter(
-      show => show.meta.episode === this.state.expandedShow
+      show => show.meta.season === this.state.expandedShow.season && show.meta.episode === this.state.expandedShow.episode
     );
 
     // Don't render content until we've found the current show
