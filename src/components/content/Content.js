@@ -31,13 +31,14 @@ class Content extends Component {
       .then(res => res.json())
       .then(json => {
         if (json.success) {
+          console.log("Successfully fetched shows.");
           if (this.state.currentShow && this.state.expandedShow) {
             this.setState({ shows: json.shows });
           } else {
             this.setState({
               shows: json.shows,
-              currentShow: json.shows.length + 1,
-              expandedShow: json.shows.length + 1
+              currentShow: json.shows.length + 0,
+              expandedShow: json.shows.length + 0
             });
           }
         } else {
@@ -69,6 +70,7 @@ class Content extends Component {
 
     // Don't render content until we've found the current show
     let content;
+
     if (currentShow[0] && expandedShow[0]) {
       content = (
         <Container>
