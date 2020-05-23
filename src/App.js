@@ -6,6 +6,8 @@ import Subscribe from "./components/subscribe/Subscribe";
 import Content from "./components/content/Content";
 import Footer from "./components/footer/Footer";
 
+if (process.env.NODE_ENV === "development") require("dotenv").config();
+
 class App extends Component {
   constructor() {
     super();
