@@ -9,14 +9,14 @@ class Player extends Component {
 
     this.state = {
       playing: false,
-      currentShow: localStorage.getItem("currentShowUrl") || this.props.show.url,
+      currentShowUrl: localStorage.getItem("currentShowUrl") || this.props.show.url,
       currentTime: parseInt(localStorage.getItem("currentTime")) || 0,
       playbackSpeed: parseInt(localStorage.getItem("playbackSpeed")) || 1,
       volume: parseInt(localStorage.getItem("volume")) || 50,
       showLength: "00:00:00"
     };
 
-    this.audio = new Audio(this.state.currentShow);
+    this.audio = new Audio(this.state.currentShowUrl);
 
     this.play = this.play.bind(this);
     this.pause = this.pause.bind(this);
@@ -26,7 +26,6 @@ class Player extends Component {
   }
 
   componentDidMount() {
-    console.log(this.state.currentShow)
     const showLength = this.convertStringToMs(this.props.show.meta.duration);
     this.setState({ showLength });
     this.audio.currentTime = this.state.currentTime / 1000;
