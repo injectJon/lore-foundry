@@ -51,10 +51,12 @@ class Content extends Component {
             this.setState({ shows: json.shows });
           } else {
             const sortedShows = json.shows.sort((show, show2) => sortShows(show, show2));
+            // grab last show listened to from local storage, else most recently uploaded show
+            const show = sortedShows.filter(show => show.url === localStorage.getItem("currentShowUrl"))[0] || sortedShows[0];
             this.setState({
               shows: sortedShows,
-              currentShow: {season: sortedShows[0].meta.season, episode: sortedShows[0].meta.episode},
-              expandedShow: {season: sortedShows[0].meta.season, episode: sortedShows[0].meta.episode}
+              currentShow: {season: show.meta.season, episode: show.meta.episode},
+              expandedShow: {season: show.meta.season, episode: show.meta.episode}
             });
           }
         } else {
