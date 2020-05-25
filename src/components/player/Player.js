@@ -134,6 +134,8 @@ class Player extends Component {
 
     const currentTimeString = this.convertMsToString(this.state.currentTime);
 
+    console.log(this.state.showLength)
+
     return (
       <Container>
         <LeftContainer>
