@@ -25,9 +25,8 @@ class Player extends Component {
   }
 
   componentDidMount() {
-    this.setState({
-      showLength: this.convertStringToMs(this.props.show.meta.duration)
-    });
+    const showLength = this.convertStringToMs(this.props.show.meta.duration);
+    this.setState({ showLength });
     this.audio.currentTime = this.state.currentTime / 1000;
     this.audio.volume = this.state.volume / 100;
     this.audio.playbackRate = this.state.playbackSpeed;
@@ -42,11 +41,11 @@ class Player extends Component {
     if (show.meta.episode !== prevProps.show.meta.episode) {
       this.pause();
       this.audio.removeEventListener("timeupdate", e => "");
-      console.log(this.props.show.meta.duration);
+      const showLength = this.convertStringToMs(this.props.show.meta.duration);
 
       this.setState({
         currentTime: 0,
-        showLength: this.convertStringToMs(this.props.show.meta.duration)
+        showLength
       });
 
       this.audio = new Audio(show.url);
@@ -86,8 +85,8 @@ class Player extends Component {
 
       return hours + minutes + seconds;
     } else {
-      const minutes = parseInt(parts[1]) * 60000;
-      const seconds = parseInt(parts[2]) * 1000;
+      const minutes = parseInt(parts[0]) * 60000;
+      const seconds = parseInt(parts[1]) * 1000;
 
       return minutes + seconds;
     }
@@ -125,6 +124,7 @@ class Player extends Component {
   }
 
   scrub(value) {
+    console.log(value)
     this.setState({ currentTime: value });
     this.audio.currentTime = value / 1000;
   }
@@ -133,8 +133,6 @@ class Player extends Component {
     const { show } = this.props;
 
     const currentTimeString = this.convertMsToString(this.state.currentTime);
-
-    console.log(this.state.showLength)
 
     return (
       <Container>
@@ -158,12 +156,12 @@ class Player extends Component {
                 max={`${this.state.showLength}`}
                 value={this.state.currentTime}
                 id="scrub"
-                onChange={e => this.scrub(e.target.value)}
+                onChange={e => { console.log(e.target); this.scrub(e.target.value)}}
               />
             </PlaybackScrub>
             <ShowInfo>
               <TitleText>Playing: {show.title}</TitleText>
-              <EpisodeText>Episode {show.meta.episode}</EpisodeText>
+              <EpisodeText>Season {show.meta.season}, Episode {show.meta.episode}</EpisodeText>
             </ShowInfo>
           </ShowContainer>
         </LeftContainer>
